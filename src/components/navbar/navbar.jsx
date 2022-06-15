@@ -1,7 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+//import { render } from "@testing-library/react";
+import { Link } from "react-router-dom";
 
 export default function NavBar() {
-    const navigate = useNavigate();
+
+  //  const navigate = useNavigate();
     return (
         <nav>
             <Link to="/">
@@ -23,5 +26,6 @@ export default function NavBar() {
                 <button>questions</button>
             </Link>
         </nav>
+ 
     );
 }
