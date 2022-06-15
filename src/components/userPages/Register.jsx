@@ -16,7 +16,7 @@ export default function Register(){
 
    
 
-    const url = "azureurl"
+    const url = "https://beatsahoyp2.azurewebsites.net/"
 
     async function userReg(){
         
@@ -34,7 +34,7 @@ export default function Register(){
         
         try{
         const response = await axios.post(`${url}/register` , user)
-        navigate("/");
+        navigate("/login");
        
         console.log(response.data);
         //console.log(response)
