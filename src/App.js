@@ -6,7 +6,6 @@ import Register from "./components/userPages/Register";
 import NavBar from "./components/navbar/navbar";
 import Aboutpage from "./components/aboutpage/aboutpage";
 import Questions from "./components/questions/Questions";
-import { ThemeProvider } from '@mui/material/styles';
 import Dashboard from "./components/userPages/Dashboard";
 
 export const userContext = createContext();
@@ -19,7 +18,7 @@ function App() {
             <BrowserRouter>
                 <userContext.Provider value={[user, setUser]}>
                 
-                    <NavBar />
+                    {/* <NavBar /> */}
                     <Routes>
                         <Route path="login" element={<Login />} />
                         <Route path="register" element={<Register />} />

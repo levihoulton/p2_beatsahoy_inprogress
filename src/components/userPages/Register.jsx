@@ -1,10 +1,46 @@
+import * as React from 'react';
 import { useRef } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { TextField, OutlinedInput, InputLabel, InputAdornment, FormControl, IconButton, Button, Box, Paper, Card, CardContent, Grid, Stack, Avatar } from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import Image from "../images/banner1.png";
+import Logo from '../images/beats2.svg';
 
-
+const styles = {
+    heroContainer: {
+      height: 800,
+      backgroundImage: `url(${Image})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      width: `calc(100vw + 48px)`,
+      margin: -24,
+      padding: 24,
+    }
+   };
 
 export default function Register(){
+    const [values, setValues] = React.useState({
+        password: '',
+        showPassword: false,
+      });
+
+      const handleChange = (prop) => (event) => {
+        setValues({ ...values, [prop]: event.target.value });
+      };
+    
+      const handleClickShowPassword = () => {
+        setValues({
+          ...values,
+          showPassword: !values.showPassword,
+        });
+      };
+    
+      const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+      };
+
+
     const navigate = useNavigate();
 
     const fnameInput = useRef();
@@ -47,24 +83,68 @@ export default function Register(){
 
     return(
         <>
-        
-        <center>
-        <br></br>
-        <br></br>
-        <br></br>
-        <input placeholder="Enter First Name" ref={fnameInput}></input>
-        <br></br>
-        <input placeholder="Enter Last Name" ref={lnameInput}></input>
-        <br></br>
-        <input placeholder="Enter Username" ref={usernameInput}></input>
-        <br></br>
-        <input type="password" placeholder="Enter password" ref={passwordInput}></input>
-        
-        <br></br>
-        <br></br>
-        <button onClick={userReg}>Register</button>
+        <Paper style={styles.heroContainer}> 
+      <center><div className="App">
+      <img src={Logo} alt="Logo" />
+    
 
-</center>
+      <center>
+     
+     <Card sx={{ width: 400, height: 400 }}>
+      <CardContent>
+     
+     
+          <center>
+          <Box
+      component="form"
+      sx={{
+        '& > :not(style)': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+          <TextField id="outlined-basic" label="First Name" variant="outlined" />
+          <TextField id="outlined-basic" label="Last Name" variant="outlined" />
+          <TextField id="outlined-basic" label="Username" variant="outlined" />
+          <br></br>
+          <FormControl sx={{ m: 1, width: '28ch' }} variant="outlined">
+          <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+          <OutlinedInput
+            id="outlined-adornment-password"
+            type={values.showPassword ? 'text' : 'password'}
+            value={values.password}
+            onChange={handleChange('password')}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+            label="Password"
+          />
+        </FormControl>
+          <br></br>
+          <br></br>
+          <Button variant='contained' onClick={userReg}>Register</Button>
+          
+          </Box>
+          </center>
+          </CardContent>
+          </Card>
+          </center>
+          </div>
+          </center>
+          </Paper>
+       
+       
+
+
         </>
     )
 

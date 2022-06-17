@@ -1,3 +1,11 @@
+
+
+
+
+
+
+
+
 <Quiz
   question="1. Which one is not a JavaScript variable?"
   option1="var a=5"
