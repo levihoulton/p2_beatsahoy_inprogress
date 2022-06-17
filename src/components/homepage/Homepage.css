@@ -1,6 +1,12 @@
 
+.text {
+  position:relative; left: 800px; top: 450px;
+}
 
-.HomePage {
+
+
+
+/* .HomePage {
     text-align: center;
   }
   
@@ -19,7 +25,7 @@
     justify-content: center;
     font-size: calc(6px + 2vmin);
     /* font-family: */
-    color: rgb(251, 246, 246);
+    /* color: rgb(251, 246, 246);
   }
   
   .Home-link {
@@ -31,6 +37,6 @@
       transform: rotate(0deg);
     }
     to {
-      transform: rotate(360deg);
-    }
-  }
+      transform: rotate(360deg); */
+    /* }
+  } */ 

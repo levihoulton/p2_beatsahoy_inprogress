@@ -1,28 +1,55 @@
-import { Button } from '@mui/material';
-import React from 'react';
-import { Navigate } from 'react-router-dom';
-import './Homepage.css';
-import Register from '../userPages/Register';  
+import { Button, Typography, Paper } from "@mui/material";
+import React from "react";
+import "./Homepage.css";
+import Image from "../images/banner2.png";
+import { positions } from "@mui/system";
+import { BorderBottom } from "@mui/icons-material";
+
+// import Header from "../header/header.jsx";
+
+const styles = {
+  heroContainer: {
+    height: 800,
+    backgroundImage: `url(${Image})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    width: `calc(100vw + 48px)`,
+    margin: -24,
+    padding: 24,
+  }
+ };
 
 
+export default function HomePage() {
+  return (
+    <>
+    <Paper style={styles.heroContainer}> 
+    {/* <Header/> */}
+       
+          <div className="text">
+          <Typography color="white" variant="h4"> Your Pocket Radio. </Typography>
+          <Typography color="white" variant="h4">Customize. Share. Enjoy. </Typography>
+          
+    <br></br>
+          
+          <Button
+              variant="contained"
+              sx={{
+                color: "black",
+                backgroundColor: "white",
+                borderColor: "grey",
+              }}
+              href="/register"
+            >
+              Start Listening
+            </Button>
+            
+            </div>
+            
+              </Paper>
      
-      export default function HomePage() {
-        return (
-          <>
-          <div className="HomePage">
-            <header className="Home">
-              <img src="http://localhost:3000/banner2.png" alt="Background" 
-                size="object-fit:cover" width="100%" height="100%"></img>
-                <h1> Your Pocket Radio. </h1>
-                <h2>Customize. Share. Enjoy. </h2>
-            </header>
-          </div>
-        <Button
-  variant='contained'
-  sx={{ color: 'white', backgroundColor: 'black', borderColor: 'grey' }} onClick={ () => Navigate("/Register")}
->
-     Start Listening     
-</Button>
-        </>
-        );
-      }
+        
+     
+    </>
+  );
+}

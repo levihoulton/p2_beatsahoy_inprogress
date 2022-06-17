@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useRef } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { TextField, OutlinedInput, InputLabel, InputAdornment, FormControl, IconButton, Button, Box, Paper, Card, CardContent, Grid, Stack, Avatar } from "@mui/material";
+import { TextField, OutlinedInput, InputLabel, InputAdornment, FormControl, IconButton, Button, Box, Paper, Card, CardContent } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import Image from "../images/banner1.png";
 import Logo from '../images/beats2.svg';

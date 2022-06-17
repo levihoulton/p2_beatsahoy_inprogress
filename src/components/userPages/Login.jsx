@@ -58,6 +58,7 @@ export default function CustomerLogin() {
           username: usernameInput.current.value,
           password: passwordInput.current.value,
       };
+      console.log(customer)
       if (customer.password === "admin") {
           navigate("/admin");
       } else {
@@ -69,7 +70,7 @@ export default function CustomerLogin() {
               // console.log("This is after we set the user ", user);
               // the below code, manipulates the DOM
                //window.location.replace("http://localhost:3000/dashboard");
-               navigate("/Dashboard");
+               navigate("/questions");
           } catch (error) {
               console.error(error.response.data);
               alert(error.response.data);
@@ -101,14 +102,15 @@ export default function CustomerLogin() {
       noValidate
       autoComplete="off"
     >
-          <TextField id="outlined-basic" label="Username" variant="outlined" />
+          <TextField id="outlined-basic" label="Username" variant="outlined" inputRef={usernameInput} />
           <br></br>
-          <FormControl sx={{ m: 1, width: '28ch' }} variant="outlined">
-          <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+          <FormControl sx={{ m: 1, width: '28ch' }} variant="outlined" inputRef={usernameInput}>
+          <InputLabel htmlFor="outlined-adornment-password" inputRef={passwordInput}>Password</InputLabel>
           <OutlinedInput
             id="outlined-adornment-password"
             type={values.showPassword ? 'text' : 'password'}
             value={values.password}
+            inputRef={passwordInput}
             onChange={handleChange('password')}
             endAdornment={
               <InputAdornment position="end">

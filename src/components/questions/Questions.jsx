@@ -11,7 +11,7 @@ import Image from "../images/banner1.png"
 
 const styles = {
   heroContainer: {
-    height: 800,
+    height: 850,
     backgroundImage: `url(${Image})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
@@ -21,28 +21,65 @@ const styles = {
   }
  };
 
+ export default function TemporaryDrawer() {
+  const [state, setState] = React.useState({
+    
+    left: false,
+    
+  });
+
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+
+    setState({ ...state, [anchor]: open });
+  };
+
+  const list = (anchor) => (
+    <Box
+      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+      role="presentation"
+      onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}
+    >
+      <List>
+        {[<Link color="inherit" href="profile">
+        Profile
+      </Link>, <Link color="inherit" href="friends">
+        Friend List
+      </Link>, <Link color="inherit" href="Dashboard">
+        Dashboard
+      </Link>].map((text, index) => (
+          <ListItem key={text} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+               
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+
 export default function Quiz(props) {
 
- 
-
-
-    
+  const [runs, setRuns] = useState()
     const url = "http://localhost:9005";
+    const tokenTemp = "BQBKFHKqSIEqig2NgiDRZ6TR1AK2hQVUwlG9Bz8s2qBkTpaNIUcUd8umPAbBOi_OhaSiNBgoe3qs-rZ5AIdBlEEydXr7KOOJ5B6GUpPute92GipEDQf2gjYKZBf-LrWQvO0ePBx87LyHuPjVxh5GmiqeQWFbTFt6i559EHcqmXG3TlK6xG51DXH4mVgq8YphXOa1wmy_hohtWteM83WgJ304uaLCQ2kmdUOdcW634ayM2Jm5ihhZitAHAc1ht0AdmpSL"
 
     //const energyInput = useRef();
     const activityInput = useRef();
     const weatherInput = useRef();
     const vibeInput = useRef();
-    // const genreInput = useRef();
-    
+    const genreInput = useRef();
     const playlistInput = useRef();
     const [user, setUser] = useContext(userContext);
-    console.log(user.username)
     const [token, setToken] = useState()
     const [token1, setToken1] = useState()
-    const [songUriList, setSongUriList] = useState()
     const [playlistData, setPlaylist] = useState()
-    const [genreInput, setGenreInput] = useState();
+    const [songUriList, setSongUriList] = useState()
+    const [setGenreInput] = useState();
     const handleChange = (event) => {
       setGenreInput(event.target.value);
     };
@@ -51,8 +88,6 @@ export default function Quiz(props) {
     const handleEnergyChange = event => {
       setEnergyInput(event.target.value);
     }
-
-   
 
     const timeMarks = [
       {
@@ -77,11 +112,11 @@ export default function Quiz(props) {
     const energyMarks = [
       {
         value: 0.1,
-        label: 'Sleepy',
+        label: 'sleepy',
       },
       {
         value: 0.45,
-        label: 'Chill',
+        label: 'chill',
       },
       {
         value: 0.9,
@@ -96,11 +131,11 @@ export default function Quiz(props) {
 
     const sponMarks = [
       {
-        value: 0.1,
+        value: 1,
         label: 'Adventurous',
       },
       {
-        value: 0.9,
+        value: 99,
         label: 'Content',
       },
     ];
@@ -140,23 +175,25 @@ export default function Quiz(props) {
         console.log(data.access_token)
         setToken(data.access_token)
     }
+
     const getToken1 = async () => {
       const clientId = '5989356fb1824b5c987ccec7d8c37b02';
       const clientSecret = '81621248141f4d69adebc60a727fea99';
-
-      const result = await fetch('https://accounts.spotify.com/api/token', {
-          method: 'POST',
+      const auth_token = btoa(`${clientId}:${clientSecret}`)
+      console.log(auth_token)
+      const input = {
+        grant_type:"client_credentials"
+      }
+      const result = await axios.post('https://accounts.spotify.com/api/token', input
+      ,{
           headers: {
               'Content-Type' : 'application/x-www-form-urlencoded', 
-              'Authorization' : 'Basic ' + btoa( clientId + ':' + clientSecret)
-          },
-          body: {
-            grant_type: 'client_credentials',
-            scope: "playlist-modify-private user-library-read",
+              'Authorization' : 'Basic ' + auth_token
           }
       });
 
-      const data = await result.json();
+      const data = result.data
+      console.log(data)
       console.log(data.access_token)
       setToken1(data.access_token)
   }
@@ -170,48 +207,58 @@ export default function Quiz(props) {
         const playlist = {
           usernamePlaylist: user.username,
           url: "www.test.com",
-          fieldOne: genreInput.current.value,
+          fieldOne: "pop",
           fieldTwo: energyInput,
           fieldThree: timeInput,
           fieldFour: sponInput,
           fieldFive: moodInput,
       };
-        const url = "https://api.spotify.com/v1/recommendations?limit=30&market=ES&seed_genres="+playlist.fieldOne+"&target_energy="+playlist.fieldTwo+"&target_liveness="+playlist.fieldThree+"&min_popularity="+playlist.fieldFour+"&min_valence"+playlist.fieldFive
-        console.log(url)
+        console.log(playlist)
+        const url = "https://api.spotify.com/v1/recommendations?limit=30&market=ES&seed_genres="+playlist.fieldOne+"&target_energy="+playlist.fieldTwo+"&target_liveness="+playlist.fieldThree+"&min_valence"+playlist.fieldFive
+        //console.log(url)
         const result = await fetch(`${url}`, {
             method: 'GET',
             headers: { 'Authorization' : 'Bearer ' + token}
         });
 
         const data = await result.json();
-        console.log(data.tracks)
+        //console.log(data.tracks)
+        let tempList = []
           for (let i = 0; i < data.tracks.length; i++){
             console.log(data.tracks[i].name + "By: "+ data.tracks[i].artists[0].name)
+            tempList.push(data.tracks[i].uri)
           }
+          setSongUriList(tempList)
+          console.log(tempList)
     }
 
     const generatePlaylist = async () => {
-      const datalist = {
-        name: playlistInput.current.value,
-        description: "New playlist description",
-        public: true
-    };
-
-      const result = await axios.post('https://accounts.spotify.com/api/token',datalist, {
-          method: 'POST',
-          headers: { 'Authorization' : 'Bearer ' + token1
-          }, 
-      });
-
-      const data = await result.json();
-      console.log(data)
+      getRecommended()
+      if (playlistData == undefined){
+          const datalist = {
+            name: playlistInput.current.value,
+            description: "New playlist description",
+            public: true
+          }
+            try {
+              const result = await axios.post('https://api.spotify.com/v1/users/3126abzvtehnqna2myw6c7hwbumm/playlists',datalist,{
+                  headers: { 'Authorization' : 'Bearer ' + tokenTemp
+                  }, 
+              });
+              const data = result.data;
+              console.log(data.id)
+              setPlaylist(data.id)
+            } catch(error){
+              console.error(error);
+              //alert(error.result.data);
+          }
+        }
+     
     }
+
     
     const addPlaylist = async () => {
-      generatePlaylist()
-      getRecommended()
-      console.log(songUriList)
-      const tokenTemp ="BQDQdeFuP2cFyCrkyu9WQV_CEnGFg7Fv7gBo5UGhvI8tNOGUzTv1AiUPQrofYjDixJPLEd67_i7i4DkNikiP-_fCXJQo9harDePPnMRUkkvbSCN569yN-mhK0MQogIucgTrJkK6uMndzsKjLVQMXm6PnjkCNh3rUK2N5NMlJs_g60LHFzrsl4nr4ui1juywFmnLaFlV8bxzCYtXjAlQvMa4ZKBHDYpz55yTpj2YvnFdKxRQ9gI-2nHTUkf3o-mtpZDsj"
+      console.log("testing here: "+songUriList)
       let baseURL = "https://api.spotify.com/v1/playlists/" + playlistData + "/tracks"
       console.log(baseURL)
       try {
@@ -224,36 +271,46 @@ export default function Quiz(props) {
       } catch(error){
         console.error(error);
         //alert(error.result.data);
+        //createPlaylist()
     }
-  }
+
+    }
 
     // async-await
     async function createPlaylist() {
-     
+      await getRecommended()
+      if (playlistData != undefined){
         // Whenever you are getting a useRefs value, make sure it's inside some function call. Otherwise it will
         // error due to the refInput.current = undefined, meaning there is no .value available
-         const playlist = {
-             usernamePlaylist: user.username,
-             url: "www.test.com",
-             fieldOne: genreInput.current.value,
-             fieldTwo: energyInput.current.value,
-             fieldThree: activityInput.current.value,
-             fieldFour: weatherInput.current.value,
-             fieldFive: "test",
-         };
-        
-         
+        console.log(runs)
+        if (runs==undefined){
+            const playlist1 = {
+              usernamePlaylist: user.username,
+              url: "https://open.spotify.com/playlist/"+playlistData,
+              fieldOne: "pop",
+              fieldTwo: energyInput,
+              fieldThree: timeInput,
+              fieldFour: playlistInput.current.value,
+              fieldFive: moodInput,
+          };
+          let urlLink = "https://beatsahoy.azurewebsites.net"
 
-        console.log(playlist);
-         try {
-            const response = await axios.post(`${url}/addPlaylist`, playlist, {withCredentials: true});
-            console.log(response.data);
-              //console.log(response)
-              } catch(error){
-                  console.error(error.response.data);
-                  //alert(error.response.data);
-              }
-            
+            console.log(playlist1);
+            try {
+                const response = await axios.post(`${urlLink}/addPlaylist`, playlist1);
+                console.log(response.data);
+                  //console.log(response)
+                  } catch(error){
+                      console.error(error.response.data);
+                      //alert(error.response.data);
+                  }
+              setRuns("ran")
+            }
+              addPlaylist()
+            }else{
+              prompt("Please submit a playlist name before loading songs")
+            }
+        
     }
   
     return (
@@ -265,7 +322,7 @@ export default function Quiz(props) {
         <center>
         
        
-        <Card sx={{ width: 600, height: 800 }}>
+        <Card sx={{ width: 600, height: 850 }}>
       <CardContent>
       
       
@@ -278,7 +335,10 @@ export default function Quiz(props) {
         
         <Typography variant="h6">Name of Playlist?</Typography>
         <br></br>
-        <TextField id="standard-basic" label="" variant="standard" />
+        <TextField id="standard-basic" label="" variant="standard" inputRef={playlistInput} />
+        <br></br>
+        <br></br>
+        <Button variant="contained" onClick={generatePlaylist}>Create Playlist</Button>
         
         <br></br>
         <br></br>
@@ -406,7 +466,7 @@ export default function Quiz(props) {
     
       <br></br><br></br>
       
-       <Button variant="contained" onClick={addPlaylist}>Submit</Button>
+       <Button variant="contained" onClick={createPlaylist}>Add Songs</Button>
 
        
           </center>
