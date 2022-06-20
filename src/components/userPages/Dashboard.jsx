@@ -11,6 +11,8 @@ import ListItemText from '@mui/material/ListItemText';
 import { Link, Paper } from '@mui/material';
 import Image from "../images/banner1.png"
 import MediaControlCard from './db2';
+import { Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Link as RouterLink } from "react-router-dom";
 
 const styles = {
     heroContainer: {
@@ -37,7 +39,8 @@ export default function TemporaryDrawer() {
     }
 
     setState({ ...state, [anchor]: open });
-  };
+  }
+async function NavQuestions(){Navigate("/questions")}
 
   const list = (anchor) => (
     <Box
@@ -49,16 +52,12 @@ export default function TemporaryDrawer() {
       <List>
         {[<Link color="inherit" href="profile">
         Profile
-      </Link>, <Link color="inherit" href="friends">
-        Friend List
       </Link>, <Link color="inherit" href="Dashboard">
         Dashboard
       </Link>].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
-              <ListItemIcon>
-               
-              </ListItemIcon>
+             
               <ListItemText primary={text} />
             </ListItemButton>
           </ListItem>
@@ -68,14 +67,14 @@ export default function TemporaryDrawer() {
       <List>
         {[<Link color="inherit" href="playlists">
         Playlists
-      </Link>, <Link color="inherit" href="questions">
+      </Link>, <Link color="inherit" href="friends">
+        Friend List
+      </Link>, <Link to="/questions" component={RouterLink} color="inherit" >
         Develop a New Playlist
       </Link>].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
-              <ListItemIcon>
-               
-              </ListItemIcon>
+              
               <ListItemText primary={text} />
             </ListItemButton>
           </ListItem>

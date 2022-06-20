@@ -7,6 +7,8 @@ import NavBar from "./components/navbar/navbar";
 import Aboutpage from "./components/aboutpage/aboutpage";
 import Questions from "./components/questions/Questions";
 import Dashboard from "./components/userPages/Dashboard";
+import Profile from "./components/profile";
+import Playlists from "./components/playlist";
 
 export const userContext = createContext();
 
@@ -24,8 +26,10 @@ function App() {
                         <Route path="register" element={<Register />} />
                         <Route exact path="" element={<Homepage />} />
                         <Route path="about" element={<Aboutpage />} />
-                        <Route path="questions" element={<Questions />} />
+                        <Route path="questions" element={<Questions/>} />
+                        <Route path="profile" element={<Profile/>} />
                         <Route path="dashboard" element={<Dashboard />} />
+                        <Route path="playlists" element={<Playlists />} />
                     </Routes>
                     
                 </userContext.Provider>

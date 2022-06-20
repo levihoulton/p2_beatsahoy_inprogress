@@ -11,7 +11,7 @@ import Image from "../images/banner1.png"
 
 const styles = {
   heroContainer: {
-    height: 850,
+    height: 800,
     backgroundImage: `url(${Image})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
@@ -21,69 +21,29 @@ const styles = {
   }
  };
 
- export default function TemporaryDrawer() {
-  const [state, setState] = React.useState({
-    
-    left: false,
-    
-  });
-
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
-    }
-
-    setState({ ...state, [anchor]: open });
-  };
-
-  const list = (anchor) => (
-    <Box
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
-      role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <List>
-        {[<Link color="inherit" href="profile">
-        Profile
-      </Link>, <Link color="inherit" href="friends">
-        Friend List
-      </Link>, <Link color="inherit" href="Dashboard">
-        Dashboard
-      </Link>].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-               
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-
 export default function Quiz(props) {
+    
 
-  const [runs, setRuns] = useState()
+
+  
+    const [runs, setRuns] = useState()
     const url = "http://localhost:9005";
-    const tokenTemp = "BQBKFHKqSIEqig2NgiDRZ6TR1AK2hQVUwlG9Bz8s2qBkTpaNIUcUd8umPAbBOi_OhaSiNBgoe3qs-rZ5AIdBlEEydXr7KOOJ5B6GUpPute92GipEDQf2gjYKZBf-LrWQvO0ePBx87LyHuPjVxh5GmiqeQWFbTFt6i559EHcqmXG3TlK6xG51DXH4mVgq8YphXOa1wmy_hohtWteM83WgJ304uaLCQ2kmdUOdcW634ayM2Jm5ihhZitAHAc1ht0AdmpSL"
+    const tokenTemp = "BQCxJyZI4LjNNGz_icRRUJtEmdzOVv12DgujPClt28LkRMNt_4kK8506zGY4CBYPbbX_w_q80drzmjtkX6Mm-ulMk_Y8W3ea_rjuzXs-dHhLuTswkkDqUnkf60ysw_ShCPhLfuKobmMvkJv2OkSon6si9anVP9_Fh7hRkCqRfPzE8Cc4HYB3zS5kkIBRMljxwteU5DjdQD5yUCurS_YN5k9N5buMS0QYrejjTClxk3Fe7zbkfmM1brM6GUAoYLoC2qru"
 
     //const energyInput = useRef();
     const activityInput = useRef();
     const weatherInput = useRef();
     const vibeInput = useRef();
-    const genreInput = useRef();
+    const [genreInput, setGenreInput] = useState();
     const playlistInput = useRef();
     const [user, setUser] = useContext(userContext);
     const [token, setToken] = useState()
     const [token1, setToken1] = useState()
     const [playlistData, setPlaylist] = useState()
     const [songUriList, setSongUriList] = useState()
-    const [setGenreInput] = useState();
     const handleChange = (event) => {
       setGenreInput(event.target.value);
     };
-
     const [energyInput, setEnergyInput] = useState();
     const handleEnergyChange = event => {
       setEnergyInput(event.target.value);
@@ -202,27 +162,26 @@ export default function Quiz(props) {
     //get the recommended songs
     const getRecommended = async () => {
         getToken()
-        console.log(token)
+        console.log("here" + token)
 
         const playlist = {
           usernamePlaylist: user.username,
           url: "www.test.com",
-          fieldOne: "pop",
+          fieldOne: genreInput,
           fieldTwo: energyInput,
           fieldThree: timeInput,
           fieldFour: sponInput,
           fieldFive: moodInput,
       };
-        console.log(playlist)
-        const url = "https://api.spotify.com/v1/recommendations?limit=30&market=ES&seed_genres="+playlist.fieldOne+"&target_energy="+playlist.fieldTwo+"&target_liveness="+playlist.fieldThree+"&min_valence"+playlist.fieldFive
-        //console.log(url)
+        const url = "https://api.spotify.com/v1/recommendations?limit=80&market=ES&seed_genres="+playlist.fieldOne+"&target_energy="+playlist.fieldTwo+"&target_liveness="+playlist.fieldThree+"&min_popularity="+playlist.fieldFour+"&min_valence"+playlist.fieldFive
+        console.log(url)
         const result = await fetch(`${url}`, {
             method: 'GET',
             headers: { 'Authorization' : 'Bearer ' + token}
         });
 
         const data = await result.json();
-        //console.log(data.tracks)
+        console.log(data.tracks)
         let tempList = []
           for (let i = 0; i < data.tracks.length; i++){
             console.log(data.tracks[i].name + "By: "+ data.tracks[i].artists[0].name)
@@ -236,7 +195,7 @@ export default function Quiz(props) {
       getRecommended()
       if (playlistData == undefined){
           const datalist = {
-            name: playlistInput.current.value,
+            name: playlistInput,
             description: "New playlist description",
             public: true
           }
@@ -287,7 +246,7 @@ export default function Quiz(props) {
             const playlist1 = {
               usernamePlaylist: user.username,
               url: "https://open.spotify.com/playlist/"+playlistData,
-              fieldOne: "pop",
+              fieldOne: genreInput,
               fieldTwo: energyInput,
               fieldThree: timeInput,
               fieldFour: playlistInput.current.value,
@@ -312,7 +271,6 @@ export default function Quiz(props) {
             }
         
     }
-  
     return (
      <>
      <Paper style={styles.heroContainer}>
@@ -322,7 +280,7 @@ export default function Quiz(props) {
         <center>
         
        
-        <Card sx={{ width: 600, height: 850 }}>
+        <Card sx={{ width: 600, height: 800 }}>
       <CardContent>
       
       
@@ -335,10 +293,8 @@ export default function Quiz(props) {
         
         <Typography variant="h6">Name of Playlist?</Typography>
         <br></br>
-        <TextField id="standard-basic" label="" variant="standard" inputRef={playlistInput} />
-        <br></br>
-        <br></br>
         <Button variant="contained" onClick={generatePlaylist}>Create Playlist</Button>
+        <TextField id="standard-basic" label="" variant="standard" />
         
         <br></br>
         <br></br>
@@ -466,7 +422,7 @@ export default function Quiz(props) {
     
       <br></br><br></br>
       
-       <Button variant="contained" onClick={createPlaylist}>Add Songs</Button>
+       <Button variant="contained" onClick={addPlaylist}>Submit</Button>
 
        
           </center>

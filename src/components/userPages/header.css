@@ -1,0 +1,24 @@
+Header
+ .container {
+  position: relative;
+  text-align: center;
+  color: rgb(216, 133, 133);
+ }
+ /* Bottom left text */
+ .bottom-left {
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+ }
+Header
+ .container {
+  position: relative;
+  text-align: center;
+  color: rgb(216, 133, 133);
+ }
+ /* Bottom left text */
+ .bottom-left {
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+ }

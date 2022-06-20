@@ -51,7 +51,7 @@ export default function CustomerLogin() {
   const url = "https://beatsahoyp2.azurewebsites.net"
   const usernameInput = useRef();
   const passwordInput = useRef();
-   //const [user, setUser] = useContext(userContext);
+   const [user, setUser] = useContext(userContext);
    const navigate = useNavigate();
   async function login() {
       const customer = {
@@ -66,11 +66,11 @@ export default function CustomerLogin() {
               const response = await axios.post(`${url}/auth`, customer);
               console.log(response.data);
               // console.log("Hey this is the user prior ", user);
-              // setUser({ ...user, username: customer.username });
+               setUser({ ...user, username: customer.username });
               // console.log("This is after we set the user ", user);
               // the below code, manipulates the DOM
                //window.location.replace("http://localhost:3000/dashboard");
-               navigate("/questions");
+               navigate("/dashboard");
           } catch (error) {
               console.error(error.response.data);
               alert(error.response.data);
@@ -105,7 +105,7 @@ export default function CustomerLogin() {
           <TextField id="outlined-basic" label="Username" variant="outlined" inputRef={usernameInput} />
           <br></br>
           <FormControl sx={{ m: 1, width: '28ch' }} variant="outlined" inputRef={usernameInput}>
-          <InputLabel htmlFor="outlined-adornment-password" inputRef={passwordInput}>Password</InputLabel>
+          <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
           <OutlinedInput
             id="outlined-adornment-password"
             type={values.showPassword ? 'text' : 'password'}
