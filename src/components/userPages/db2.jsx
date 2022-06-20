@@ -31,7 +31,7 @@ export default function MediaControlCard() {
           const response = await fetch(`${url}`);
           const menus = await response.json();
           console.log(menus);
-          const menuTableRows = menus.map((e) => {
+          const menuTableRows = menus.slice(0).reverse().map((e) => {
               if (e.usernamePlaylist.username === user.username){
                   const url=e.url
               return (

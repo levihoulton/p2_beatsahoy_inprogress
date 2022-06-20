@@ -67,11 +67,13 @@ export default function CustomerLogin() {
               console.log(response.data);
               // console.log("Hey this is the user prior ", user);
                setUser({ ...user, username: customer.username });
+               console.log("about to navigate")
               // console.log("This is after we set the user ", user);
               // the below code, manipulates the DOM
                //window.location.replace("http://localhost:3000/dashboard");
                navigate("/dashboard");
           } catch (error) {
+            console.log("error")
               console.error(error.response.data);
               alert(error.response.data);
           }

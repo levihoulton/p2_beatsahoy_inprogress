@@ -23,254 +23,252 @@ const styles = {
 
 export default function Quiz(props) {
     
+  const [runs, setRuns] = useState()
+  const url = "http://localhost:9005";
+  const tokenTemp = "BQBqyckNdovqN6qnjA9Mw4EycJiju1wTl4ah6BbBEL-4AP3OwKrmRdNIrISa8jTo_gs_ZicQfY6dPJ6amNioB8SbwQe9xsgoo1ZqaOTB5mHW4qzklSM5YNC9Wy0Fq29phGHXHst31pvnN6SaWX5x3xE6FmnwQDqhyb7HJHzetKajCMpAfiWRhEQmtlDiaS1ODsuWjhZsZnhlNQiVcM05X9HaUstE8v7Tn8tAcGdgY3Nln1mN4Z97ldXRteIEEXDmXPrA"
 
+  //const energyInput = useRef();
+  const activityInput = useRef();
+  const weatherInput = useRef();
+  const vibeInput = useRef();
+  const genreInput = useRef();
+  const playlistInput = useRef();
+  const [user, setUser] = useContext(userContext);
+  const [token, setToken] = useState()
+  const [token1, setToken1] = useState()
+  const [playlistData, setPlaylist] = useState()
+  const [songUriList, setSongUriList] = useState()
 
+  const [energyInput, setEnergyInput] = useState();
+  const handleEnergyChange = event => {
+    setEnergyInput(event.target.value);
+  }
+
+  const timeMarks = [
+    {
+      value: 0.1,
+      label: 'Waking Up',
+    },
+    {
+      value: 0.45,
+      label: 'Hitting Gym',
+    },
+    {
+      value: 0.9,
+      label: 'PARTAY TIME',
+    },
+  ];
+
+  const [timeInput, setTimeInput] = useState();
+  const handleTimeChange = event => {
+    setTimeInput(event.target.value);
+  }
+
+  const energyMarks = [
+    {
+      value: 0.1,
+      label: 'sleepy',
+    },
+    {
+      value: 0.45,
+      label: 'chill',
+    },
+    {
+      value: 0.9,
+      label: 'PUMPED',
+    },
+  ];
+
+  const [sponInput, setSponInput] = useState();
+  const handleSponChange = event => {
+    setSponInput(event.target.value);
+  }
+
+  const sponMarks = [
+    {
+      value: 1,
+      label: 'Adventurous',
+    },
+    {
+      value: 99,
+      label: 'Content',
+    },
+  ];
+
+  const [moodInput, setMoodInput] = useState();
+  const handleMoodChange = event => {
+    setMoodInput(event.target.value);
+  }
+
+  const moodMarks = [
+    {
+      value: 0.1,
+      label: 'Sad',
+    },
+    {
+      value: 0.9,
+      label: 'Happy',
+    },
+  ];
   
-    const [runs, setRuns] = useState()
-    const url = "http://localhost:9005";
-    const tokenTemp = "BQCxJyZI4LjNNGz_icRRUJtEmdzOVv12DgujPClt28LkRMNt_4kK8506zGY4CBYPbbX_w_q80drzmjtkX6Mm-ulMk_Y8W3ea_rjuzXs-dHhLuTswkkDqUnkf60ysw_ShCPhLfuKobmMvkJv2OkSon6si9anVP9_Fh7hRkCqRfPzE8Cc4HYB3zS5kkIBRMljxwteU5DjdQD5yUCurS_YN5k9N5buMS0QYrejjTClxk3Fe7zbkfmM1brM6GUAoYLoC2qru"
-
-    //const energyInput = useRef();
-    const activityInput = useRef();
-    const weatherInput = useRef();
-    const vibeInput = useRef();
-    const [genreInput, setGenreInput] = useState();
-    const playlistInput = useRef();
-    const [user, setUser] = useContext(userContext);
-    const [token, setToken] = useState()
-    const [token1, setToken1] = useState()
-    const [playlistData, setPlaylist] = useState()
-    const [songUriList, setSongUriList] = useState()
-    const handleChange = (event) => {
-      setGenreInput(event.target.value);
-    };
-    const [energyInput, setEnergyInput] = useState();
-    const handleEnergyChange = event => {
-      setEnergyInput(event.target.value);
-    }
-
-    const timeMarks = [
-      {
-        value: 0.1,
-        label: 'Waking Up',
-      },
-      {
-        value: 0.45,
-        label: 'Hitting Gym',
-      },
-      {
-        value: 0.9,
-        label: 'PARTAY TIME',
-      },
-    ];
-
-    const [timeInput, setTimeInput] = useState();
-    const handleTimeChange = event => {
-      setTimeInput(event.target.value);
-    }
-
-    const energyMarks = [
-      {
-        value: 0.1,
-        label: 'sleepy',
-      },
-      {
-        value: 0.45,
-        label: 'chill',
-      },
-      {
-        value: 0.9,
-        label: 'PUMPED',
-      },
-    ];
-
-    const [sponInput, setSponInput] = useState();
-    const handleSponChange = event => {
-      setSponInput(event.target.value);
-    }
-
-    const sponMarks = [
-      {
-        value: 1,
-        label: 'Adventurous',
-      },
-      {
-        value: 99,
-        label: 'Content',
-      },
-    ];
-
-    const [moodInput, setMoodInput] = useState();
-    const handleMoodChange = event => {
-      setMoodInput(event.target.value);
-    }
-
-    const moodMarks = [
-      {
-        value: 0.1,
-        label: 'Sad',
-      },
-      {
-        value: 0.9,
-        label: 'Happy',
-      },
-    ];
-    
 
 
-    const getToken = async () => {
-        const clientId = '5989356fb1824b5c987ccec7d8c37b02';
-        const clientSecret = '81621248141f4d69adebc60a727fea99';
-
-        const result = await fetch('https://accounts.spotify.com/api/token', {
-            method: 'POST',
-            headers: {
-              'Content-Type' : 'application/x-www-form-urlencoded', 
-              'Authorization' : 'Basic ' + btoa( clientId + ':' + clientSecret)
-          },
-          body: 'grant_type=client_credentials'
-      });
-
-        const data = await result.json();
-        console.log(data.access_token)
-        setToken(data.access_token)
-    }
-
-    const getToken1 = async () => {
+  const getToken = async () => {
       const clientId = '5989356fb1824b5c987ccec7d8c37b02';
       const clientSecret = '81621248141f4d69adebc60a727fea99';
-      const auth_token = btoa(`${clientId}:${clientSecret}`)
-      console.log(auth_token)
-      const input = {
-        grant_type:"client_credentials"
-      }
-      const result = await axios.post('https://accounts.spotify.com/api/token', input
-      ,{
+
+      const result = await fetch('https://accounts.spotify.com/api/token', {
+          method: 'POST',
           headers: {
-              'Content-Type' : 'application/x-www-form-urlencoded', 
-              'Authorization' : 'Basic ' + auth_token
-          }
+            'Content-Type' : 'application/x-www-form-urlencoded', 
+            'Authorization' : 'Basic ' + btoa( clientId + ':' + clientSecret)
+        },
+        body: 'grant_type=client_credentials'
+    });
+
+      const data = await result.json();
+      console.log(data.access_token)
+      setToken(data.access_token)
+  }
+
+  const getToken1 = async () => {
+    const clientId = '5989356fb1824b5c987ccec7d8c37b02';
+    const clientSecret = '81621248141f4d69adebc60a727fea99';
+    const auth_token = btoa(`${clientId}:${clientSecret}`)
+    console.log(auth_token)
+    const input = {
+      grant_type:"client_credentials"
+    }
+    const result = await axios.post('https://accounts.spotify.com/api/token', input
+    ,{
+        headers: {
+            'Content-Type' : 'application/x-www-form-urlencoded', 
+            'Authorization' : 'Basic ' + auth_token
+        }
+    });
+
+    const data = result.data
+    console.log(data)
+    console.log(data.access_token)
+    setToken1(data.access_token)
+}
+  
+  
+  //get the recommended songs
+  const getRecommended = async () => {
+      getToken()
+      console.log(token)
+
+      const playlist = {
+        usernamePlaylist: user.username,
+        url: "www.test.com",
+        fieldOne: genreInput.current.value,
+        fieldTwo: energyInput,
+        fieldThree: timeInput,
+        fieldFour: sponInput,
+        fieldFive: moodInput,
+    };
+    console.log(playlist)
+      const url = "https://api.spotify.com/v1/recommendations?limit=30&market=ES&seed_genres="+playlist.fieldOne+"&target_energy="+playlist.fieldTwo+"&target_liveness="+playlist.fieldThree+"&min_valence"+playlist.fieldFive
+      //console.log(url)
+      const result = await fetch(`${url}`, {
+          method: 'GET',
+          headers: { 'Authorization' : 'Bearer ' + token}
       });
 
-      const data = result.data
-      console.log(data)
-      console.log(data.access_token)
-      setToken1(data.access_token)
-  }
-    
-    
-    //get the recommended songs
-    const getRecommended = async () => {
-        getToken()
-        console.log("here" + token)
-
-        const playlist = {
-          usernamePlaylist: user.username,
-          url: "www.test.com",
-          fieldOne: genreInput,
-          fieldTwo: energyInput,
-          fieldThree: timeInput,
-          fieldFour: sponInput,
-          fieldFive: moodInput,
-      };
-        const url = "https://api.spotify.com/v1/recommendations?limit=80&market=ES&seed_genres="+playlist.fieldOne+"&target_energy="+playlist.fieldTwo+"&target_liveness="+playlist.fieldThree+"&min_popularity="+playlist.fieldFour+"&min_valence"+playlist.fieldFive
-        console.log(url)
-        const result = await fetch(`${url}`, {
-            method: 'GET',
-            headers: { 'Authorization' : 'Bearer ' + token}
-        });
-
-        const data = await result.json();
-        console.log(data.tracks)
-        let tempList = []
-          for (let i = 0; i < data.tracks.length; i++){
-            console.log(data.tracks[i].name + "By: "+ data.tracks[i].artists[0].name)
-            tempList.push(data.tracks[i].uri)
-          }
-          setSongUriList(tempList)
-          console.log(tempList)
-    }
-
-    const generatePlaylist = async () => {
-      getRecommended()
-      if (playlistData == undefined){
-          const datalist = {
-            name: playlistInput,
-            description: "New playlist description",
-            public: true
-          }
-            try {
-              const result = await axios.post('https://api.spotify.com/v1/users/3126abzvtehnqna2myw6c7hwbumm/playlists',datalist,{
-                  headers: { 'Authorization' : 'Bearer ' + tokenTemp
-                  }, 
-              });
-              const data = result.data;
-              console.log(data.id)
-              setPlaylist(data.id)
-            } catch(error){
-              console.error(error);
-              //alert(error.result.data);
-          }
+      const data = await result.json();
+      console.log(data.tracks)
+      let tempList = []
+        for (let i = 0; i < data.tracks.length; i++){
+          console.log(data.tracks[i].name + "By: "+ data.tracks[i].artists[0].name)
+          tempList.push(data.tracks[i].uri)
         }
-     
-    }
+        setSongUriList(tempList)
+        console.log(tempList)
+  }
 
-    
-    const addPlaylist = async () => {
-      console.log("testing here: "+songUriList)
-      let baseURL = "https://api.spotify.com/v1/playlists/" + playlistData + "/tracks"
-      console.log(baseURL)
-      try {
-        const result = await axios.post(`${baseURL}`,songUriList,{
-            headers: { 'Authorization' : 'Bearer ' + tokenTemp
-            }, 
-        });
-        const data = result.data;
-        console.log(data)
-      } catch(error){
-        console.error(error);
-        //alert(error.result.data);
-        //createPlaylist()
-    }
+  const generatePlaylist = async () => {
+    getRecommended()
+    if (playlistData == undefined){
+        const datalist = {
+          name: playlistInput.current.value,
+          description: "New playlist description",
+          public: true
+        }
+          try {
+            const result = await axios.post('https://api.spotify.com/v1/users/3126abzvtehnqna2myw6c7hwbumm/playlists',datalist,{
+                headers: { 'Authorization' : 'Bearer ' + tokenTemp
+                }, 
+            });
+            const data = result.data;
+            console.log(data.id)
+            setPlaylist(data.id)
+          } catch(error){
+            console.error(error);
+            //alert(error.result.data);
+        }
+      }
+   
+  }
 
-    }
+  
+  const addPlaylist = async () => {
+    console.log("testing here: "+songUriList)
+    let baseURL = "https://api.spotify.com/v1/playlists/" + playlistData + "/tracks"
+    console.log(baseURL)
+    try {
+      const result = await axios.post(`${baseURL}`,songUriList,{
+          headers: { 'Authorization' : 'Bearer ' + tokenTemp
+          }, 
+      });
+      const data = result.data;
+      console.log(data)
+    } catch(error){
+      console.error(error);
+      //alert(error.result.data);
+      //createPlaylist()
+  }
 
-    // async-await
-    async function createPlaylist() {
-      await getRecommended()
-      if (playlistData != undefined){
-        // Whenever you are getting a useRefs value, make sure it's inside some function call. Otherwise it will
-        // error due to the refInput.current = undefined, meaning there is no .value available
-        console.log(runs)
-        if (runs==undefined){
-            const playlist1 = {
-              usernamePlaylist: user.username,
-              url: "https://open.spotify.com/playlist/"+playlistData,
-              fieldOne: genreInput,
-              fieldTwo: energyInput,
-              fieldThree: timeInput,
-              fieldFour: playlistInput.current.value,
-              fieldFive: moodInput,
-          };
-          let urlLink = "https://beatsahoy.azurewebsites.net"
+  }
 
-            console.log(playlist1);
-            try {
-                const response = await axios.post(`${urlLink}/addPlaylist`, playlist1);
-                console.log(response.data);
-                  //console.log(response)
-                  } catch(error){
-                      console.error(error.response.data);
-                      //alert(error.response.data);
-                  }
-              setRuns("ran")
-            }
-              addPlaylist()
-            }else{
-              prompt("Please submit a playlist name before loading songs")
-            }
-        
-    }
+  // async-await
+  async function createPlaylist() {
+    await getRecommended()
+    if (playlistData != undefined){
+      // Whenever you are getting a useRefs value, make sure it's inside some function call. Otherwise it will
+      // error due to the refInput.current = undefined, meaning there is no .value available
+      console.log(runs)
+      if (runs==undefined){
+          const playlist1 = {
+            usernamePlaylist: user.username,
+            url: "https://open.spotify.com/playlist/"+playlistData,
+            fieldOne: genreInput.current.value,
+            fieldTwo: energyInput,
+            fieldThree: timeInput,
+            fieldFour: playlistInput.current.value,
+            fieldFive: moodInput,
+        };
+        console.log(playlist1)
+        let urlLink = "https://beatsahoy.azurewebsites.net"
+
+          console.log(playlist1);
+          try {
+              const response = await axios.post(`${urlLink}/addPlaylist`, playlist1);
+              console.log(response.data);
+                //console.log(response)
+                } catch(error){
+                    console.error(error.response.data);
+                    //alert(error.response.data);
+                }
+            setRuns("ran")
+            addPlaylist()
+          }
+            
+          }else{
+            prompt("Please submit a playlist name before loading songs")
+          }
+      
+  }
     return (
      <>
      <Paper style={styles.heroContainer}>
@@ -294,7 +292,7 @@ export default function Quiz(props) {
         <Typography variant="h6">Name of Playlist?</Typography>
         <br></br>
         <Button variant="contained" onClick={generatePlaylist}>Create Playlist</Button>
-        <TextField id="standard-basic" label="" variant="standard" />
+        <TextField id="standard-basic" label="" variant="standard" inputRef={playlistInput}/>
         
         <br></br>
         <br></br>
@@ -307,8 +305,7 @@ export default function Quiz(props) {
         <Select
           labelId="demo-simple-select-standard-label"
           id="demo-simple-select-standard"
-          value={genreInput}
-          onChange={handleChange}
+          inputRef={genreInput}
           label=""
         >
           
@@ -422,7 +419,7 @@ export default function Quiz(props) {
     
       <br></br><br></br>
       
-       <Button variant="contained" onClick={addPlaylist}>Submit</Button>
+       <Button variant="contained" onClick={createPlaylist}>Submit</Button>
 
        
           </center>
