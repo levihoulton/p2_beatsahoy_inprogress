@@ -14,12 +14,14 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Image from "./images/banner1.png"
 import { Paper } from '@mui/material';
+import Logo from './images/beats2.svg';
+import TemporaryDrawer from './navbar/drawer';
 
 
 const theme = createTheme();
 const styles = {
     heroContainer: {
-      height: 700,
+      height: 950,
       backgroundImage: `url(${Image})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
@@ -41,6 +43,7 @@ export default function Profile() {
 
   return (
     <Paper style={styles.heroContainer}> 
+    <TemporaryDrawer/>
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -49,16 +52,14 @@ export default function Profile() {
             marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
+            alignItems: 'center'
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <HeadphonesSharpIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
+            <img src={Logo} alt="Logo"/>
+          <Typography component="h1" variant="h5" color={'white'}>
             User Profile
           </Typography>
-          <Typography component="h3" variant="h7">
+          <Typography component="h3" variant="h7" color={'white'}>
             Update info here
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
@@ -121,11 +122,12 @@ export default function Profile() {
               <Grid item>
               </Grid>
             </Grid>
-          </Box>
-        </Box>
-        <Button variant="outlined" color="error">
+            <Button variant="outlined" color="error">
         Delete Account
       </Button>
+          </Box>
+        </Box>
+        
       </Container>
     </ThemeProvider>
     </Paper>

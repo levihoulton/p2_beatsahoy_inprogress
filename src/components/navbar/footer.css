@@ -1,0 +1,16 @@
+.footer {
+    width: 100%;
+    background: #FFFFFF;
+    color: rgb(154, 130, 155);
+    padding: 0rem 0;
+    text-align: center;
+    font-size: .8rem;
+    color: rgba(rgb(197, 228, 219),.4);
+}
+​
+.footer img {
+    width: 8em;
+    align-items: left;
+    margin: 0;
+    size-adjust: 5;
+}

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { TextField, OutlinedInput, InputLabel, InputAdornment, FormControl, IconButton, Button, Box, Paper, Card, CardContent, Typography, Grid } from "@mui/material";
 import Image from "../images/banner1.png";
 import Logo from '../images/beats2.svg';
+import ResponsiveAppBar from "../navbar/navbar";
 
 const styles = {
     heroContainer: {
@@ -25,6 +26,7 @@ export default function Aboutpage(){
 
     return(
         <>
+        <ResponsiveAppBar />
         <Paper style={styles.heroContainer}> 
       <center><div className="App">
       <img src={Logo} alt="Logo" />

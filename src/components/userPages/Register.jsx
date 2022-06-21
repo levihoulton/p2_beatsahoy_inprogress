@@ -6,6 +6,7 @@ import { TextField, OutlinedInput, InputLabel, InputAdornment, FormControl, Icon
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import Image from "../images/banner1.png";
 import Logo from '../images/beats2.svg';
+import ResponsiveAppBar from '../navbar/navbar';
 
 const styles = {
     heroContainer: {
@@ -84,6 +85,7 @@ export default function Register(){
     return(
         <>
         <Paper style={styles.heroContainer}> 
+        <ResponsiveAppBar/>
       <center><div className="App">
       <img src={Logo} alt="Logo" />
     

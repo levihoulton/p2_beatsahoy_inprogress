@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import TemporaryDrawer from "./navbar/drawer";
 
 export default function FriendList() {
     const [friendsBody, setFriendsBody] = useState([]);
@@ -42,7 +43,7 @@ export default function FriendList() {
     return (
         
         <>
-        
+        <TemporaryDrawer/>
         <table class="center">
                 
                 <thead>

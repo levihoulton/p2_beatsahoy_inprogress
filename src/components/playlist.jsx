@@ -7,6 +7,7 @@ import * as React from 'react';
 import List from '@mui/material/List';
 
 import { ListGroup } from "react-bootstrap";
+import TemporaryDrawer from "./navbar/drawer";
 
 
 export default function Playlists() {
@@ -78,6 +79,7 @@ export default function Playlists() {
     return (
     
        <>
+       <TemporaryDrawer/>
        <div>
          <h2>Playlists</h2>
             <List

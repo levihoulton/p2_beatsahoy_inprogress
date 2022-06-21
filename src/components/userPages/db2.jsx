@@ -10,6 +10,12 @@ import Typography from '@mui/material/Typography';
 import { userContext } from "../../App";
 import List from '@mui/material/List';
 import { ListGroup } from "react-bootstrap";
+import Grid from '@mui/material/Grid';
+import { padding } from '@mui/system';
+
+
+
+
 export default function MediaControlCard() {
   const theme = useTheme();
   const [menuBody, setMenuBody] = useState([]);
@@ -78,106 +84,121 @@ export default function MediaControlCard() {
   }
   return (
     <>
-    <Card sx={{ display: 'flex' }}>
+    <Grid container spacing={50} paddingLeft={8} paddingTop={5}>
+    <Grid item md={3}>
+    <Card sx={{ display: 'flex', width: 440, height: 200}}>
     <Box sx={{ display: 'flex' , flexDirection:"column"}}>
         <CardContent sx={{ flex: '1 0 auto' }}>
-          <Typography component="div" variant="h5">
+          <Typography component="div" variant="h5" align="center" paddingTop={5}>
           Album of the Week
           </Typography>
-          <Typography variant="subtitle1" color="text.secondary" component="div">
+          <br></br>
+          <Typography variant="body2" color="text.secondary" component="div" align="center">
           "Un Verano Sin Ti" x Bad Bunny
           </Typography>
         </CardContent>
-        <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-          
-        </Box>
+        
       </Box>
+     
       <CardMedia
         component="img"
-        sx={{ width: 151 }}
+        sx={{ width: 205 }}
         image="https://charts-static.billboard.com/img/2022/05/bad-bunny-c3m-un-verano-sin-ti-3ib-344x344.jpg"
         alt="Live from space album cover"
-      />
+      /> 
+      </Card>
+    </Grid>
+    <Grid item md={3}>
+      <Card sx={{ display: 'flex', width: 440, height: 200 }}>
       <Box sx={{ display: 'flex' , flexDirection:"column"}}>
         <CardContent sx={{ flex: '1 0 auto' }}>
-          <Typography component="div" variant="h5">
+          <Typography component="div" variant="h5" align='center' paddingTop={5} paddingRight={1.72}>
             Artist of the Week
           </Typography>
-          <Typography variant="subtitle1" color="text.secondary" component="div">
+          <br></br>
+          <Typography variant="body2" color="text.secondary" component="div" align='center'>
           Harry Styles
           </Typography>
         </CardContent>
-        <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-         
-        </Box>
+        
       </Box>
       <CardMedia
         component="img"
-        sx={{ width: 151 }}
+        
+        sx={{ width: 205 }}
         image="https://charts-static.billboard.com/img/2017/04/harry-styles-psx-artist-chart-rzg-344x344.jpg"
         alt="Live from space album cover"
       />
+      </Card>
+     </Grid>
+
+     <Grid item md={3}>
+      <Card sx={{ display: 'flex', width: 440, height: 200 }}>
      <Box sx={{ display: 'flex' , flexDirection:"column"}}>
         <CardContent sx={{ flex: '1 0 auto' }}>
-          <Typography component="div" variant="h5">
+          <Typography component="div" variant="h5" align='center' paddingTop={5}>
             Song of the Week
           </Typography>
-          <Typography variant="subtitle1" color="text.secondary" component="div">
-          "Wait For U" x Future Featuring Drake & Tems
+          <Typography variant="subtitle1" color="text.secondary" component="div" align='center'>
+          "Wait For U" x Future Ft. Drake & Tems
           </Typography>
         </CardContent>
-        <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-         
-        </Box>
+        
       </Box>
+      
+      
       <CardMedia
         component="img"
-        sx={{ width: 151 }}
+        sx={{ width: 278 }}
         image="https://charts-static.billboard.com/img/1988/03/future-f8b-344x344.jpg"
         alt="Live from space album cover"
       />
-       </Card>
-       .
-       .
-       .
-       .
+      </Card>
+        </Grid>
+      </Grid>
+       
        <h1>        </h1>
        <h1>        </h1>
        <h1>        </h1>
        <h1>        </h1>
        <h1>        </h1>
 
+       <Grid container spacing={6} paddingTop={5} paddingLeft={8} paddingRight={15}>
+       <Grid item md={6}>
        <Card sx={{ display: 'flex',  width:"5000" }}>
       <Box sx={{ display: 'flex' , flexDirection:"row"}}>
         <CardContent>
-        <h2>Your Playlists</h2>
+        <Typography variant="h4">Your Playlists</Typography>
+        
           <List>
             {menuBody}
           </List>
         </CardContent>
        </Box>
        </Card>
-       .
-       .
-       .
-       .
+       </Grid>
+       
        <h1>        </h1>
        <h1>        </h1>
        <h1>        </h1>
        <h1>        </h1>
        <h1>        </h1>
+       <Grid item md={6}>
       <Card sx={{ display: 'flex',  width:"5000" }}>
       <Box sx={{ display: 'flex' , flexDirection:"row"}}>
         <CardContent>
-          <h2>Recently Made Playlists</h2>
+          <Typography variant="h4">Recently Made Playlists</Typography>
           <List>
+            <Typography variant="body2">
             {menuBodyRecent}
+            </Typography>
           </List>
         </CardContent>
         
       </Box>
       </Card>
+      </Grid>
+     </Grid>
     </>
-    
   );
 }

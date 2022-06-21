@@ -4,6 +4,10 @@ import "./Homepage.css";
 import Image from "../images/banner2.png";
 import { positions } from "@mui/system";
 import { BorderBottom } from "@mui/icons-material";
+import ResponsiveAppBar from "../navbar/navbar";
+import Image2 from "../images/footer.png"
+import Box from "@mui/material/Box";
+
 
 // import Header from "../header/header.jsx";
 
@@ -23,6 +27,7 @@ const styles = {
 export default function HomePage() {
   return (
     <>
+    <ResponsiveAppBar />
     <Paper style={styles.heroContainer}> 
     {/* <Header/> */}
        
@@ -47,7 +52,9 @@ export default function HomePage() {
             </div>
             
               </Paper>
-     
+              
+              
+              
         
      
     </>
