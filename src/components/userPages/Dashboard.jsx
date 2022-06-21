@@ -3,11 +3,13 @@ import { Paper } from '@mui/material';
 import Image from "../images/banner1.png"
 import MediaControlCard from './db2';
 import TemporaryDrawer from '../navbar/drawer';
+import Bottom from '../navbar/footer';
+import Footer from '../navbar/footer';
 
 
 const styles = {
     heroContainer: {
-      height: 700,
+      height: 800,
       backgroundImage: `url(${Image})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
@@ -29,10 +31,13 @@ export default function Dashboard() {
         
         
     <TemporaryDrawer/>
-       
+    
      <MediaControlCard/>
+   <Footer />
     </div>
+    
     </Paper>
+    
 </>
   );
 }
