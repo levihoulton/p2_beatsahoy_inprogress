@@ -7,6 +7,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import Image from "../images/banner1.png";
 import Logo from '../images/beats2.svg';
 import ResponsiveAppBar from '../navbar/navbar';
+import Footer from '../navbar/footer';
 
 const styles = {
     heroContainer: {
@@ -142,6 +143,7 @@ export default function Register(){
           </center>
           </div>
           </center>
+          <Footer />
           </Paper>
        
        

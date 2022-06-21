@@ -86,7 +86,8 @@ export default function MediaControlCard() {
     <>
     <Grid container spacing={50} paddingLeft={8} paddingTop={5}>
     <Grid item md={3}>
-    <Card sx={{ display: 'flex', width: 440, height: 200}}>
+    <Card sx={{ bgcolor: '#F3E5F5', boxShadow: 5,
+          borderRadius: 2, display: 'flex', width: 440, height: 200}}>
     <Box sx={{ display: 'flex' , flexDirection:"column"}}>
         <CardContent sx={{ flex: '1 0 auto' }}>
           <Typography component="div" variant="h5" align="center" paddingTop={5}>
@@ -109,7 +110,8 @@ export default function MediaControlCard() {
       </Card>
     </Grid>
     <Grid item md={3}>
-      <Card sx={{ display: 'flex', width: 440, height: 200 }}>
+      <Card sx={{ bgcolor: '#F3E5F5', boxShadow: 5,
+          borderRadius: 2, display: 'flex', width: 440, height: 200 }}>
       <Box sx={{ display: 'flex' , flexDirection:"column"}}>
         <CardContent sx={{ flex: '1 0 auto' }}>
           <Typography component="div" variant="h5" align='center' paddingTop={5} paddingRight={1.72}>
@@ -133,7 +135,8 @@ export default function MediaControlCard() {
      </Grid>
 
      <Grid item md={3}>
-      <Card sx={{ display: 'flex', width: 440, height: 200 }}>
+      <Card sx={{ bgcolor: '#F3E5F5', boxShadow: 5,
+          borderRadius: 2, display: 'flex', width: 440, height: 200 }}>
      <Box sx={{ display: 'flex' , flexDirection:"column"}}>
         <CardContent sx={{ flex: '1 0 auto' }}>
           <Typography component="div" variant="h5" align='center' paddingTop={5}>
@@ -165,8 +168,9 @@ export default function MediaControlCard() {
 
        <Grid container spacing={6} paddingTop={5} paddingLeft={8} paddingRight={15}>
        <Grid item md={6}>
-       <Card sx={{ display: 'flex',  width:"5000" }}>
-      <Box sx={{ display: 'flex' , flexDirection:"row"}}>
+       <Card sx={{ bgcolor: '#F3E5F5', boxShadow: 5,
+          borderRadius: 2, display: 'flex',  width:"5000" }}>
+      <Box sx={{ overflow: 'auto', display: 'flex' , flexDirection:"row"}}>
         <CardContent>
         <Typography variant="h4">Your Playlists</Typography>
         
@@ -184,7 +188,8 @@ export default function MediaControlCard() {
        <h1>        </h1>
        <h1>        </h1>
        <Grid item md={6}>
-      <Card sx={{ display: 'flex',  width:"5000" }}>
+      <Card sx={{ bgcolor: '#F3E5F5', boxShadow: 5,
+          borderRadius: 2, display: 'flex',  width:"5000" }}>
       <Box sx={{ display: 'flex' , flexDirection:"row"}}>
         <CardContent>
           <Typography variant="h4">Recently Made Playlists</Typography>
