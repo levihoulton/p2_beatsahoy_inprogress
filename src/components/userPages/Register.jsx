@@ -65,7 +65,7 @@ export default function Register(){
             lname: lnameInput.current.value,
             username: usernameInput.current.value,
             password: passwordInput.current.value,
-           
+      
         }
        
 
@@ -106,9 +106,10 @@ export default function Register(){
       noValidate
       autoComplete="off"
     >
-          <TextField id="outlined-basic" label="First Name" variant="outlined" />
-          <TextField id="outlined-basic" label="Last Name" variant="outlined" />
-          <TextField id="outlined-basic" label="Username" variant="outlined" />
+
+          <TextField id="outlined-basic" label="First Name" variant="outlined" inputRef={fnameInput} />
+          <TextField id="outlined-basic" label="Last Name" variant="outlined" inputRef={lnameInput}/>
+          <TextField id="outlined-basic" label="Username" variant="outlined" inputRef={usernameInput}/>
           <br></br>
           <FormControl sx={{ m: 1, width: '28ch' }} variant="outlined">
           <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
@@ -116,6 +117,7 @@ export default function Register(){
             id="outlined-adornment-password"
             type={values.showPassword ? 'text' : 'password'}
             value={values.password}
+            inputRef={passwordInput}
             onChange={handleChange('password')}
             endAdornment={
               <InputAdornment position="end">
