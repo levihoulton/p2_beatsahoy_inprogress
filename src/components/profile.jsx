@@ -16,12 +16,13 @@ import Image from "./images/banner1.png"
 import { Paper } from '@mui/material';
 import Logo from './images/beats2.svg';
 import TemporaryDrawer from './navbar/drawer';
+import Footer from './navbar/footer';
 
 
 const theme = createTheme();
 const styles = {
     heroContainer: {
-      height: 950,
+      height: 1000,
       backgroundImage: `url(${Image})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
@@ -42,6 +43,7 @@ export default function Profile() {
   };
 
   return (
+    <>
     <Paper style={styles.heroContainer}> 
     <TemporaryDrawer/>
     <ThemeProvider theme={theme}>
@@ -129,8 +131,11 @@ export default function Profile() {
         </Box>
         
       </Container>
+      <Footer />
     </ThemeProvider>
+   
     </Paper>
-    
+   
+    </>
   );
 }
