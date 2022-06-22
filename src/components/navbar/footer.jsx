@@ -16,7 +16,7 @@ const Footer = () => <>
         
         <AppBar position="relative" elevation={0} component="footer" color="transparent" >
         <center>
-        <Headphones sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, color:'white', paddingTop: 7 }} />
+        <Headphones sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, color:'white', paddingTop: 12 }} />
                 </center>
                 
             <Toolbar style={{ justifyContent: "center", position: "flex" }}>

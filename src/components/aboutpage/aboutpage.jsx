@@ -4,6 +4,7 @@ import { TextField, OutlinedInput, InputLabel, InputAdornment, FormControl, Icon
 import Image from "../images/banner1.png";
 import Logo from '../images/beats2.svg';
 import ResponsiveAppBar from "../navbar/navbar";
+import Footer from "../navbar/footer";
 
 const styles = {
     heroContainer: {
@@ -57,6 +58,7 @@ export default function Aboutpage(){
        </center>
        </div>
           </center>
+          <Footer />
           </Paper>
         </>
     );

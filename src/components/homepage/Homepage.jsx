@@ -7,13 +7,14 @@ import { BorderBottom } from "@mui/icons-material";
 import ResponsiveAppBar from "../navbar/navbar";
 import Image2 from "../images/footer.png"
 import Box from "@mui/material/Box";
+import Footer from "../navbar/footer";
 
 
 // import Header from "../header/header.jsx";
 
 const styles = {
   heroContainer: {
-    height: 800,
+    height: 900,
     backgroundImage: `url(${Image})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
@@ -29,28 +30,22 @@ export default function HomePage() {
     <>
     <ResponsiveAppBar />
     <Paper style={styles.heroContainer}> 
-    {/* <Header/> */}
+   
        
-          <div className="text">
-          <Typography color="white" variant="h4"> Your Pocket Radio. </Typography>
-          <Typography color="white" variant="h4">Customize. Share. Enjoy. </Typography>
           
-    <br></br>
-          
-          <Button
-              variant="contained"
-              sx={{
-                color: "black",
-                backgroundColor: "white",
-                borderColor: "grey",
-              }}
+          <Typography color="white" variant="h4" position={'flex'} paddingLeft={95} paddingTop={60}> Your Pocket Radio. <br></br> Customize. Share. Enjoy.<br></br> <Button variant="contained" sx={{color: "black", backgroundColor: "white", borderColor: "grey"}}
               href="/register"
             >
               Start Listening
-            </Button>
+            </Button></Typography>
+          
+          
+    <br></br>
+          
+         
             
-            </div>
             
+    
               </Paper>
               
               

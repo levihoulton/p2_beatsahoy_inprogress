@@ -8,11 +8,12 @@ import CssBaseline from "@mui/material/CssBaseline";
 import * as React from "react";
 import Image from "../images/banner1.png"
 import TemporaryDrawer from "../navbar/drawer";
+import Footer from "../navbar/footer";
 
 
 const styles = {
   heroContainer: {
-    height: 1000,
+    height: 1150,
     backgroundImage: `url(${Image})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
@@ -280,7 +281,8 @@ export default function Quiz(props) {
         <center>
         
        
-        <Card sx={{ width: 600, height: 900 }}>
+        <Card sx={{ bgcolor: '#F3E5F5', boxShadow: 5,
+          borderRadius: 2, width: 600, height: 900 }}>
       <CardContent>
       
       
@@ -433,10 +435,11 @@ export default function Quiz(props) {
           
           </CardContent>
           </Card>
-          
+          <Footer />
           </center>
           
           </Paper>
+          
     </>  
     );
   }

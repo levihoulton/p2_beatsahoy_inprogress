@@ -13,6 +13,8 @@ import MailIcon from '@mui/icons-material/Mail';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
 import { Typography } from '@mui/material';
 import Profile from '../profile';
+import { BrowserRouter as Router, Link, Link as RouterLink } from "react-router-dom";
+
 
 export default function TemporaryDrawer() {
   const [state, setState] = React.useState({
@@ -37,27 +39,32 @@ export default function TemporaryDrawer() {
       onClick={toggleDrawer(anchor, false)}
       
     >
+      
       <List>
-        <Button href='/profile'><Typography variant='body1' color={'black'} paddingLeft={3}>Profile</Typography></Button>
+      <Link to="/dashboard" component={RouterLink}><Typography variant='body1' color={'black'} paddingLeft={3}>Dashboard</Typography></Link>
+       </List>
+       
+      <List>
+      <Link to="/questions" component={RouterLink}><Typography variant='body1' color={'black'} paddingLeft={3}>Playlist Quiz</Typography></Link>
+      <br></br>
+      <List>
+      <Link to="/profile" component={RouterLink}><Typography variant='body1' color={'black'} paddingLeft={3}>Edit Profile</Typography></Link>
+       
+      </List>
+       <br></br><br></br><br></br>
+       <Divider />
+       <br></br>
+      </List>
+      <Link to="/" component={RouterLink}><Typography fontFamily={'arial'} variant='body1' color={'black'} paddingLeft={3}>Logout</Typography></Link>
+    {/* <List>
+      <Link to="/playlists" component={RouterLink}><Typography variant='body1' color={'black'} paddingLeft={3}>Playlists</Typography></Link>
        
       </List>
       <List>
-        <Button href='/dashboard'><Typography variant='body1' color={'black'} paddingLeft={3}>Dashboard</Typography></Button>
+      <Link to="/friends" component={RouterLink}><Typography variant='body1' color={'black'} paddingLeft={3}>Friends List</Typography></Link>
        
-      </List>
-      <Divider />
-      <List>
-      <Button href='/playlists'><Typography variant='body1' color={'black'} paddingLeft={3}>Playlists</Typography></Button>
-       
-      </List>
-      <List>
-        <Button href='/friends'><Typography variant='body1' color={'black'} paddingLeft={3}>Friends List</Typography></Button>
-       
-      </List>
-      <List>
-       <Button href='/questions'><Typography variant='body1' color={'black'} paddingLeft={3}>Playlist Quiz</Typography></Button>
-       
-      </List>
+      </List> */}
+    
     </Box>
   );
 

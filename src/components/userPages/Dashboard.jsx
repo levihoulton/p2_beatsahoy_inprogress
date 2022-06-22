@@ -9,7 +9,7 @@ import Footer from '../navbar/footer';
 
 const styles = {
     heroContainer: {
-      height: 800,
+      height: 850,
       backgroundImage: `url(${Image})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
