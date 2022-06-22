@@ -9,6 +9,8 @@ import * as React from "react";
 import Image from "../images/banner1.png"
 import TemporaryDrawer from "../navbar/drawer";
 import Footer from "../navbar/footer";
+import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 const styles = {
@@ -27,7 +29,7 @@ export default function Quiz(props) {
     
   const [runs, setRuns] = useState()
   const url = "http://localhost:9005";
-  const tokenTemp = "BQB9VzUgH-9mPyFb0Xm0Cfyeno_8ND9tQ7HUs2bpJ_nFmnKeeKee_3FRrKWU9hD5e0fVyCe20NrTaD5oSN_k-9-W58l65_UzhPAk3Sq1IQd7Xe1cCUb5G09FZN23e_Gs3B276Nnd6xGLV1Na0wm-tqxLDU5t6n0BIT8NWbn4ukPZlI6HM5KwuiAq9I2m014DJzqko7wK7ue2YbSYn9P0UfzW4migDJpeJzks1PgIizHaXfqWXpehikK8NeXcZDhncbXa"
+  const tokenTemp = "BQARunEzfE3dG4tycNygZk6FekGfbC3YNL6zlsbUdpFuKwPKgz2PjIztZjRi4FAa0fj6ZDC8GIC9v1nVbOv9_RNn2zTyiSSAode-GBwOaGyYFBNXCuabCVvC7Dl-LsjFPSMWhfDWP-9CGJUOLfQJzHpQRUrQaIrekMgaOdN3SqIvw1YukGtNyGP8O3IqYkLwywmt8-gdQICL_4GNUZMIEkYhafM6C7P-tgE6RNO6oC7pi58sZNxQQXCF1qjU-upw1F0"
 
   //const energyInput = useRef();
   const activityInput = useRef();
@@ -40,6 +42,8 @@ export default function Quiz(props) {
   const [token1, setToken1] = useState()
   const [playlistData, setPlaylist] = useState()
   const [songUriList, setSongUriList] = useState()
+  const navigate = useNavigate();
+  let playlistURL = ""
 
   const [energyInput, setEnergyInput] = useState();
   const handleEnergyChange = event => {
@@ -171,7 +175,7 @@ export default function Quiz(props) {
         fieldFive: moodInput,
     };
     console.log(playlist)
-      const url = "https://api.spotify.com/v1/recommendations?limit=30&market=ES&seed_genres="+playlist.fieldOne+"&target_energy="+playlist.fieldTwo+"&target_liveness="+playlist.fieldThree+"&min_valence"+playlist.fieldFive
+      const url = "https://api.spotify.com/v1/recommendations?limit=20&market=ES&seed_genres="+playlist.fieldOne+"&target_energy="+playlist.fieldTwo+"&target_liveness="+playlist.fieldThree+"&min_valence"+playlist.fieldFive
       //console.log(url)
       const result = await fetch(`${url}`, {
           method: 'GET',
@@ -190,7 +194,7 @@ export default function Quiz(props) {
   }
 
   const generatePlaylist = async () => {
-    getRecommended()
+    getToken()
     if (playlistData == undefined){
         const datalist = {
           name: playlistInput.current.value,
@@ -210,6 +214,7 @@ export default function Quiz(props) {
             //alert(error.result.data);
         }
       }
+      await getRecommended()
    
   }
 
@@ -235,7 +240,7 @@ export default function Quiz(props) {
 
   // async-await
   async function createPlaylist() {
-    await getRecommended()
+    getRecommended()
     if (playlistData != undefined){
       // Whenever you are getting a useRefs value, make sure it's inside some function call. Otherwise it will
       // error due to the refInput.current = undefined, meaning there is no .value available
@@ -252,6 +257,7 @@ export default function Quiz(props) {
         };
         console.log(playlist1)
         let urlLink = "https://beatsahoy.azurewebsites.net"
+        playlistURL = playlist1.url
 
           console.log(playlist1);
           try {
@@ -264,15 +270,15 @@ export default function Quiz(props) {
                 }
             setRuns("ran")
             addPlaylist()
+          }else{
+            // navigate("/dashboard");  
           }
-            
           }else{
             prompt("Please submit a playlist name before loading songs")
-          }
-      
+          }      
   }
     return (
-     <>
+     <body>
      
      <Paper style={styles.heroContainer}>
 
@@ -302,8 +308,8 @@ export default function Quiz(props) {
         <br></br>
         <br></br>
         <center><Button variant="contained" onClick={generatePlaylist}>Create Playlist</Button></center>
-        
         <br></br>
+        <a target="_blank" rel="noopener noreferrer" href={playlistURL}><td  width="200">{playlistURL}</td></a>
         <br></br>
        
         <Typography variant="h6">Genre</Typography>
@@ -428,7 +434,7 @@ export default function Quiz(props) {
     
       <br></br><br></br>
       
-       <Button variant="contained" onClick={createPlaylist}>Submit</Button>
+       <Button variant="contained" onClick={createPlaylist}>Add 20 Songs (100 Max)</Button>
 
        
           </center>
@@ -440,7 +446,7 @@ export default function Quiz(props) {
           
           </Paper>
           
-    </>  
+          </body>  
     );
   }
   
