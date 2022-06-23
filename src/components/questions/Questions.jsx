@@ -267,6 +267,7 @@ export default function Quiz(props) {
           }else{
             prompt("Please submit a playlist name before loading songs")
           }
+    addPlaylist()
       
   }
     return (
