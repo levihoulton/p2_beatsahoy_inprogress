@@ -29,7 +29,7 @@ export default function Quiz(props) {
     
   const [runs, setRuns] = useState()
   const url = "http://localhost:9005";
-  const tokenTemp = "BQD_aT99fLkc3XTBGg64nxR0AteSIPXuufmfWg6peiKJNGHtM_Y5C_5Qhq_eRHYj1G88nexZnxnU5OZ7aFgRIRe4v4cdOKS6oi_L2gBTCn03tUNtsu4zKF302KF-RM91Ko97AMkgCEGNUOqPo3VDffyMD7iIFJbJEbauG2gvJlwWs3DyHTFdFJp5-XLVCjc417JeFoVPW9TEj3tu7aLt-xedu16G-1o1sbsDLl9sZqDDSe6u6QyLnuDNnj7Xsxtzm7Q"
+  const tokenTemp = "BQCTDClwTZ2kQT-iKLUFoIYA90kLskHDA7yyjq0J26KszD0ccG0rmrlAreIUT3Jvb6F9porN7IPq2H9J_awWnUa5vZVNx3ZrdWl6cmksSIJhmq-HlUukggB6G7BBpN0IZ100_EcO1xt9u3d1eDF-wRdzi7ccGoVXzW2VVN2PJ8P8dw3mjhUV1gXYx58KpAHpRFQ9bmTZw66PQhAxTTq-z0ODaHA5ZQqGBUp5Ok-SNsIQzcg7ud9hPDSb13rOH2m0A6I"
 
   //const energyInput = useRef();
   const activityInput = useRef();
@@ -175,7 +175,7 @@ export default function Quiz(props) {
         fieldFive: moodInput,
     };
     console.log(playlist)
-      const url = "https://api.spotify.com/v1/recommendations?limit=20&market=ES&seed_genres="+playlist.fieldOne+"&target_energy="+playlist.fieldTwo+"&target_liveness="+playlist.fieldThree+"&min_valence"+playlist.fieldFive
+      const url = "https://api.spotify.com/v1/recommendations?limit=50&market=ES&seed_genres="+playlist.fieldOne+"&target_energy="+playlist.fieldTwo+"&target_liveness="+playlist.fieldThree+"&min_valence"+playlist.fieldFive
       //console.log(url)
       const result = await fetch(`${url}`, {
           method: 'GET',
