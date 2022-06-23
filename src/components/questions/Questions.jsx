@@ -29,7 +29,7 @@ export default function Quiz(props) {
     
   const [runs, setRuns] = useState()
   const url = "http://localhost:9005";
-  const tokenTemp = "BQBlDAHhawYOUMNDHluaoJbwGEgf20CfqHi5DC1yeOgi5m7cHhioDD3R5AlsFHbntVLWGUtmR7VkGfiznIzhiKhKdZC_NSd5_tyR4X9r4xSNlj5x7TDmzUCGLd_7T-xyJQcjqzWVXeIKV3FnNwQ5N_7rsxVAahz1MZJ5ysGAdWeUdRAM07dls1Gdx-hujxQ8eF1S43nvP4iCLuCq6S2X09QrqqnO9z2UjhM2LYeM5TQPobfGuZHxYg8KK9RrYAzsUgU"
+  const tokenTemp = "BQD_aT99fLkc3XTBGg64nxR0AteSIPXuufmfWg6peiKJNGHtM_Y5C_5Qhq_eRHYj1G88nexZnxnU5OZ7aFgRIRe4v4cdOKS6oi_L2gBTCn03tUNtsu4zKF302KF-RM91Ko97AMkgCEGNUOqPo3VDffyMD7iIFJbJEbauG2gvJlwWs3DyHTFdFJp5-XLVCjc417JeFoVPW9TEj3tu7aLt-xedu16G-1o1sbsDLl9sZqDDSe6u6QyLnuDNnj7Xsxtzm7Q"
 
   //const energyInput = useRef();
   const activityInput = useRef();
@@ -275,7 +275,8 @@ export default function Quiz(props) {
           }
           }else{
             prompt("Please submit a playlist name before loading songs")
-          }      
+          }     
+    addPlaylist()
   }
     return (
      <body>
