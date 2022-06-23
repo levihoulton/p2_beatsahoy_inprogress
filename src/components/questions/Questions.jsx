@@ -29,7 +29,7 @@ export default function Quiz(props) {
     
   const [runs, setRuns] = useState()
   const url = "http://localhost:9005";
-  const tokenTemp = "BQAg4V3MHSek5YoHWFuYTXohHLQhYzDg2OCOzkNwSS_XQzFPdpNq5oBQps767DlN0uqWh_AkZkngEHdSrph_p2tqT0Kca5s8zN4EyyrUSNvGkopdt8TSHyBUbI8um6RDEqnA-S_lGKYDQ5KcErrtQA5tEu6fSYyK1A-paulwBrXguJHkabiAvZfEvdO77o1k58CCCtvMHHf7PBLG9ehKDlt_J80BznKt_RjXAFkuW4IBxp542vZ2raSFjnkHDqTQaKA"
+  const tokenTemp = "BQBlDAHhawYOUMNDHluaoJbwGEgf20CfqHi5DC1yeOgi5m7cHhioDD3R5AlsFHbntVLWGUtmR7VkGfiznIzhiKhKdZC_NSd5_tyR4X9r4xSNlj5x7TDmzUCGLd_7T-xyJQcjqzWVXeIKV3FnNwQ5N_7rsxVAahz1MZJ5ysGAdWeUdRAM07dls1Gdx-hujxQ8eF1S43nvP4iCLuCq6S2X09QrqqnO9z2UjhM2LYeM5TQPobfGuZHxYg8KK9RrYAzsUgU"
 
   //const energyInput = useRef();
   const activityInput = useRef();
