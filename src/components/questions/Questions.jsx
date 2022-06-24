@@ -435,7 +435,7 @@ export default function Quiz(props) {
     
       <br></br><br></br>
       
-       <Button variant="contained" onClick={createPlaylist}>Add 20 Songs (100 Max)</Button>
+       <Button variant="contained" onClick={createPlaylist}>Add 25 Songs (100 Max)</Button>
 
        
           </center>
